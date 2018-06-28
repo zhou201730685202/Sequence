@@ -20,7 +20,7 @@ int main()
 
 	cout<<"the longest length of consecutive base: "<<obj.longestConsecutive()<<endl;
 
-	//cout<<"the longest length of repeated base: "<<obj.longestRepeated()<<endl;
+	cout<<"the longest length of repeated base: "<<obj.longestRepeated()<<endl;
 
 	return 0;
 }

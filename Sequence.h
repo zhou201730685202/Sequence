@@ -20,6 +20,7 @@ public:
 private:
 	string dna;
 	ifstream DNA;
+	int len;
 	int countA,countT,countC,countG;
 };
 #endif

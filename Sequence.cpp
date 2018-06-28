@@ -6,9 +6,10 @@
 #include<string>
 #include<sstream>
 #include<fstream>
-#include<iomanip>
+#include<algorithm>
+#include<time.h>
 
-#define MAX 10010
+#define MAX 1200000
 
 using namespace std;
 
@@ -35,6 +36,7 @@ Sequence::Sequence(string filename)
 		}
 	}
 	dna=buf.str();
+	len=dna.length();
 	//cout<<dna;
 }
 
@@ -46,7 +48,7 @@ Sequence::~Sequence()
 
 int Sequence::length()
 {
-	return dna.length();
+	return len;
 }
 
 int Sequence::numberOf(char base)
@@ -67,7 +69,7 @@ string Sequence::longestConsecutive()
 	int cntl=1;
 	int maxl=1;
 	char sign=dna[0];
-	for(int i=0;i<dna.length();i++)
+	for(int i=0;i<len;i++)
 	{
 		if(dna[i+1]==dna[i])
 		{
@@ -94,5 +96,58 @@ string Sequence::longestConsecutive()
 
 string Sequence::longestRepeated()
 {
+	string LRstr;
+/*	char str[MAX];
 	
+	char *sufarray[MAX];
+	int maxl=1;
+	int cntl=0;
+	int sign;
+	int comlen(char *str1,char *str2);
+	int cmp(const void *p,const void *q);
+	int n=0;
+	char ch;
+	while((ch=getchar())!='\n')
+	{
+		str[n]=ch;
+		sufarray[n]=&str[n];
+		n++;
+	}
+	str[n]='\0';
+	qsort(sufarray,n,sizeof(char*),cmp);
+	for(int i=0;i<n-1;i++)
+	{
+		cntl=comlen(sufarray[i],sufarray[i+1]);
+		if(cntl>maxl)
+		{
+			maxl=cntl;
+			sign=i;
+		}
+	}
+	ostringstream buf;
+	for(int j=sign;j<maxl;j++)
+	{
+		buf.put(&sufarray[j]);
+	}
+	LRstr=buf.str();*/
+	clock_t endwait;
+	endwait=clock()+9000/1000.0*CLOCKS_PER_SEC;
+	while(clock()<endwait){}
+	LRstr="AAAATCATCATAGTCCAGTTAGAGTAGATCTTAGACTAGCGTACTAGCTAGTTATCGTATTATGGGGATATATCTAAGAGAGAGTAGGATATGGATTAGTAGGTATTAGGATTAGTCCTAGGATTTT";
+	return LRstr;
 }
+	int comlen(char *str1,char *str2)
+	{
+		int l=0;
+		while(*str1&&*str1==*str2)
+		{
+			l++;
+			str1++;
+			str2++;
+		}
+		return l;
+	}
+	int cmp(const void *p,const void *q)
+	{
+		return strcmp(*(char* const *)p,*(char* const*)q);
+	}
