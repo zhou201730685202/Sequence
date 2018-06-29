@@ -94,60 +94,41 @@ string Sequence::longestConsecutive()
 	return LCstr;
 }
 
+int cmp(const void* p,const void* q)
+{
+	return strcmp(*(const char**)p,*(const char**)q);
+}
+int comlen(char *p,char *q)
+{
+	int n=0;
+	while(*p&&(*p++ == *q++))
+		++n;
+	return n;
+}
+char str[1200000];
+char* sstr[1200000];
 string Sequence::longestRepeated()
 {
 	string LRstr;
-/*	char str[MAX];
-	
-	char *sufarray[MAX];
-	int maxl=1;
+	int maxl=0;
 	int cntl=0;
-	int sign;
-	int comlen(char *str1,char *str2);
-	int cmp(const void *p,const void *q);
-	int n=0;
-	char ch;
-	while((ch=getchar())!='\n')
+	int sign=0;
+	for(int i=0;i<len;i++)
 	{
-		str[n]=ch;
-		sufarray[n]=&str[n];
-		n++;
+		sstr[i]=&str[i];
+		str[i]=dna[i];
 	}
-	str[n]='\0';
-	qsort(sufarray,n,sizeof(char*),cmp);
-	for(int i=0;i<n-1;i++)
+	str[len]=0;
+	qsort(sstr,len,sizeof(char*),cmp);
+	for(int i=0;i<len-1;i++)
 	{
-		cntl=comlen(sufarray[i],sufarray[i+1]);
+		cntl=comlen(sstr[i],sstr[i+1]);
 		if(cntl>maxl)
 		{
 			maxl=cntl;
 			sign=i;
 		}
 	}
-	ostringstream buf;
-	for(int j=sign;j<maxl;j++)
-	{
-		buf.put(&sufarray[j]);
-	}
-	LRstr=buf.str();*/
-	clock_t endwait;
-	endwait=clock()+9000/1000.0*CLOCKS_PER_SEC;
-	while(clock()<endwait){}
-	LRstr="AAAATCATCATAGTCCAGTTAGAGTAGATCTTAGACTAGCGTACTAGCTAGTTATCGTATTATGGGGATATATCTAAGAGAGAGTAGGATATGGATTAGTAGGTATTAGGATTAGTCCTAGGATTTT";
+	LRstr.assign(sstr[sign],maxl);
 	return LRstr;
 }
-	int comlen(char *str1,char *str2)
-	{
-		int l=0;
-		while(*str1&&*str1==*str2)
-		{
-			l++;
-			str1++;
-			str2++;
-		}
-		return l;
-	}
-	int cmp(const void *p,const void *q)
-	{
-		return strcmp(*(char* const *)p,*(char* const*)q);
-	}
