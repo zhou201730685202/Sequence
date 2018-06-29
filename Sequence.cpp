@@ -7,7 +7,6 @@
 #include<sstream>
 #include<fstream>
 #include<algorithm>
-#include<time.h>
 
 #define MAX 1200000
 
